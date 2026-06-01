@@ -1,11 +1,21 @@
 // src/app/manifest.ts
-import { MetadataRoute } from 'next';
+import {MetadataRoute} from 'next';
+import {getTranslations} from 'next-intl/server';
+ 
+export default async function manifest(): Promise<MetadataRoute.Manifest> {
+  // Pick a locale that is representative of the app
+  const locale = 'ru';
+ 
+  const t = await getTranslations({
+    namespace: 'Global',
+    locale
+  });
+ 
 
-export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'RenDit',
-    short_name: 'RenDit',
-    description: 'Современная структура ленты свайпами влево и вправо',
+    name: t('SiteName'),
+    short_name: t('SiteName'),
+    description: t('SiteDescription'),
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',
@@ -18,4 +28,5 @@ export default function manifest(): MetadataRoute.Manifest {
       },
     ],
   };
+
 }

@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
+import { SITE_CONFIG } from '@/config/site';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://domen.ru';
+const BASE_URL = SITE_CONFIG.url;
 
 export default function robots(): MetadataRoute.Robots {
   return {

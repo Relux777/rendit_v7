@@ -1,7 +1,9 @@
 import { MetadataRoute } from 'next';
 import { routing } from '@/i18n/routing';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://domen.ru';
+import { SITE_CONFIG } from '@/config/site';
+
+const BASE_URL = SITE_CONFIG.url;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Базовая генерация для главной страницы

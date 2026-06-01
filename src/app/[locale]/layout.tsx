@@ -6,7 +6,9 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { Metadata } from 'next';
+
+import { getTranslations } from 'next-intl/server';
+import { SITE_CONFIG } from '@/config/site';
 
 import "@/assets/scss/ReluxCode.scss";
 
@@ -16,24 +18,28 @@ const BackgroundDecor = dynamic(() => import('@/components/Default/BackgroundDec
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,          // чтобы убрать масштабирование пальцами, если нужно
-  userScalable: false,      // опционально
+  maximumScale: 1,      
+  userScalable: false,
+  viewportFit: 'cover',      
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://domen.ru'),
-  openGraph: {
-    siteName: 'RenDit',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-      },
-    ],
-    type: 'website',
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  
+  const t = await getTranslations({ locale, namespace: 'Global' });
+
+  return {
+    metadataBase: new URL(SITE_CONFIG.url),
+    openGraph: {
+      siteName: t('SiteName'),
+      type: 'website',
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

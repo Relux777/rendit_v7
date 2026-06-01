@@ -5,7 +5,7 @@ import styles from './header.module.scss'
 import LogoIcon from '@/assets/svg/filled/heart.svg';
 
 export default function HeaderDefault({ children }: { children: React.ReactNode }) {
-    const t = useTranslations('Header');
+    const t = useTranslations('Global');
 
         return (
             <header className={`p-sticky t-0 z-20 ${styles.header}`}>

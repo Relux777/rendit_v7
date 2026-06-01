@@ -1,7 +1,8 @@
 // src/lib/seo.ts
 import { routing } from '@/i18n/routing';
+import { SITE_CONFIG } from '@/config/site';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://domen.ru';
+const BASE_URL = SITE_CONFIG.url;
 
 export function getHreflangLinks(cleanPath: string): Record<string, string> {
   const languages: Record<string, string> = {};
