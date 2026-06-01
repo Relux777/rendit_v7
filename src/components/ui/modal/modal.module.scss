@@ -1,6 +1,4 @@
 .modal {
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
   transition: opacity 0.3s ease, visibility 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
 
   .content {

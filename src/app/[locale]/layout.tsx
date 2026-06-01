@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import dynamic from 'next/dynamic'
+import type { Viewport } from 'next';
 
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -11,6 +12,13 @@ import "@/assets/scss/ReluxCode.scss";
 
 const NavBar = dynamic(() => import('@/components/NavBar/'))
 const BackgroundDecor = dynamic(() => import('@/components/Default/BackgroundDecor'))
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,          // чтобы убрать масштабирование пальцами, если нужно
+  userScalable: false,      // опционально
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://domen.ru'),
