@@ -34,7 +34,7 @@
         cursor: pointer;
         padding: 0;
 
-        &:is(:hover, :active) { opacity: 1; }
+        &:is(:hover) { opacity: 1; }
     }
 
     p, span, strong { color: rgb(var(--bg-2) / 70%); }
