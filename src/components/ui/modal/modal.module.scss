@@ -1,0 +1,61 @@
+.modal {
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+
+  .content {
+    transform: translate3d(0, 100%, 0); 
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+
+    .close {
+      &:hover {
+        background: rgb(var(--bg-2) / 7%);
+      }
+    }
+  }
+
+  /* --- МОДИФИКАТОРЫ ПОЗИЦИИ --- */
+  &.center {
+    align-items: center; 
+    .drag { display: none; }
+    main { padding: 20px; }
+  }
+
+  &.bottom {
+    align-items: flex-end;
+    .content { border-radius: 20px 20px 0 0; }
+    main { padding-top: 0px; }
+  }
+
+  /* --- СОСТОЯНИЕ ОТКРЫТИЯ --- */
+  &.active {
+    visibility: visible;
+    opacity: 1;
+
+    .content {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  /* --- МОДИФИКАТОРЫ РАЗМЕРА --- */
+  &.w_440px {
+    .content {
+      width: 460px;
+      @media (width < 500px) { width: 100%; } /* ИСПРАВЛЕНО: не хватало px */
+    }
+  }
+
+  @media (width < 500px) {
+    &.center {
+      align-items: flex-end;
+    }
+    
+    .content {
+      border-radius: 20px 20px 0 0;
+
+      .drag { display: flex; }
+      main { padding-top: 0px; }
+    }
+  }
+}

@@ -1,0 +1,195 @@
+@layer utilities {
+    // Positioning
+    .p-relative { position: relative; }
+    .p-absolute { position: absolute; }
+    .p-fixed { position: fixed; }
+    .p-sticky { position: sticky; }
+
+    // Typography
+    .text-uppercase { text-transform: uppercase; }
+    .text_center { text-align: center; }
+    .text_left { text-align: left; }
+    .text_right { text-align: right; }
+
+    // Sizing
+    .w-full { width: 100%; }
+    .h-full { height: 100%; }
+    .h-100vh { height: 100vh; }
+
+    // Interactivity
+    .cursor-auto { cursor: auto; }
+    .cursor-pointer { cursor: pointer; }
+    .cursor-grab { cursor: grab; }
+
+    .p-events-none { pointer-events: none; }
+    .p-events-all { pointer-events: all; }
+    .t-action-none { touch-action: none; }
+    .u-select-none { user-select: none; }
+
+    // Visibility & States
+    .visibility-hidden { visibility: hidden; opacity: 0; }
+    .visibility-hidden.active { @extend .visible; }
+    .visible { opacity: 1; visibility: visible; }
+    .visible.visibility-hidden { @extend .visibility-hidden; }
+    .hover-opactity-9-10 { opacity: 0.9; &:hover { opacity: 1; } }
+    .active > .rotate-180 { transform: rotate(-180deg); }
+    .active.opacity-10 { opacity: 1; }
+
+    // Box Shadow
+    .shadow-1 { box-shadow: inset 0 0 0 1px color-mix(in srgb,#fff calc(var(--glass-reflex-light)*10%),transparent),inset 1.8px 3px 0px -2px color-mix(in srgb,#fff calc(var(--glass-reflex-light)*90%),transparent),inset -2px -2px 0px -2px color-mix(in srgb,#fff calc(var(--glass-reflex-light)*80%),transparent),inset -3px -8px 1px -6px color-mix(in srgb,#fff calc(var(--glass-reflex-light)*60%),transparent),inset -.3px -1px 4px 0px color-mix(in srgb,#000 calc(var(--glass-reflex-dark)*12%),transparent),inset -1.5px 2.5px 0px -2px color-mix(in srgb,#000 calc(var(--glass-reflex-dark)*20%),transparent),inset 0px 3px 4px -2px color-mix(in srgb,#000 calc(var(--glass-reflex-dark)*20%),transparent),inset 2px -6.5px 1px -4px color-mix(in srgb,#000 calc(var(--glass-reflex-dark)*10%),transparent),0px 1px 5px 0px color-mix(in srgb,#000 calc(var(--glass-reflex-dark)*10%),transparent),0px 6px 16px 0px color-mix(in srgb,#000 calc(var(--glass-reflex-dark)*8%),transparent);}
+    .shadow-2 { box-shadow: inset 0 0 0 1px color-mix(in srgb,#fff calc(var(--glass-reflex-light)*10%),transparent),inset 2px 1px 0 -1px color-mix(in srgb,#fff calc(var(--glass-reflex-light)*90%),transparent),inset -1.5px -1px 0 -1px color-mix(in srgb,#fff calc(var(--glass-reflex-light)*80%),transparent),inset -2px -6px 1px -5px color-mix(in srgb,#fff calc(var(--glass-reflex-light)*60%),transparent),inset -1px 2px 3px -1px color-mix(in srgb,#000 calc(var(--glass-reflex-dark)*20%),transparent),inset 0 -4px 1px -2px color-mix(in srgb,#000 calc(var(--glass-reflex-dark)*10%),transparent),0 3px 6px 0 color-mix(in srgb,#000 calc(var(--glass-reflex-dark)*8%),transparent);}
+    .shadow-3 { box-shadow: 0 -1px 0 0 var(--glass-shadow-3); }
+    .shadow-4 { box-shadow: 0 40px 80px -20px var(--glass-shadow), 0 10px 30px -10px var(--glass-shadow), inset 0 2px 3px -1px var(--glass-highlight), inset 0 -2px 4px -1px var(--glass-caustic), inset 0 0 0 1px var(--glass-border);}
+
+    // Overflow & Other
+    .overflow-auto { overflow: auto; max-height: 100vh; }
+    .overflow-hidden { overflow: hidden; }
+    .scrollbar-none { scrollbar-width: none; }
+    .text-ellipsis { text-overflow: ellipsis; }
+    .space-nowrap { white-space: nowrap; }
+    .cover { object-fit: cover; }
+    .inset-0 { inset: 0; }
+    .mg-0-auto { margin: 0 auto; }
+    .mg-auto-0 { margin: auto 0; }
+    .mg-auto { margin: auto; }
+
+    // ------------------------------------------
+    // GENERATED UTILITIES
+    // ------------------------------------------
+
+    $transitions: (2: 0.2s, 3: 0.3s, 4: 0.4s, 5: 0.5s);
+    @each $time, $duration in $transitions { .tr-#{$time} { transition: all #{$duration}; } }
+    .tr-bezier-5 { transition: transform .5s cubic-bezier(.68, -.55, .265, 1.55); }
+
+    // padding
+    $pd-sizes: 3, 5, 7, 10, 15, 20,; 
+    @each $size in $pd-sizes { .pd-#{$size} { padding: #{$size}px; } }
+
+    $pb-sizes: 0, 90; 
+    @each $size in $pb-sizes { .pb-#{$size} { padding-bottom: #{$size}px; } }
+
+    $pt-sizes: 0, 20; 
+    @each $size in $pt-sizes { .pt-#{$size} { padding-top: #{$size}px; } }
+
+    $pr-sizes: 0; 
+    @each $size in $pr-sizes { .pr-#{$size} { padding-right: #{$size}px; } }
+
+    $pl-sizes: 0; 
+    @each $size in $pl-sizes { .pl-#{$size} { padding-left: #{$size}px; } }
+
+    $px-sizes: 10; 
+    @each $size in $px-sizes { .px-#{$size} { padding-inline: #{$size}px; } }
+
+    $py-sizes: 0; 
+    @each $size in $py-sizes { .py-#{$size} { padding-block: #{$size}px; } }
+
+    // margin
+    $md-sizes: 0; 
+    @each $size in $md-sizes { .md-#{$size} { margin: #{$size}px; } }
+
+    $mb-sizes: 10, 20; 
+    @each $size in $mb-sizes { .mb-#{$size} { margin-bottom: #{$size}px; } }
+
+    $mt-sizes: 2, 20; 
+    @each $size in $mt-sizes { .mt-#{$size} { margin-top: #{$size}px; } }
+
+    $mr-sizes: 0; 
+    @each $size in $mr-sizes { .mr-#{$size} { margin-right: #{$size}px; } }
+
+    $ml-sizes: 0; 
+    @each $size in $ml-sizes { .ml-#{$size} { margin-left: #{$size}px; } }
+
+    $mx-sizes: 0; 
+    @each $size in $mx-sizes { .mx-#{$size} { margin-inline: #{$size}px; } }
+
+    $my-sizes: 0; 
+    @each $size in $my-sizes { .my-#{$size} { margin-block: #{$size}px; } }
+    
+    // top left right bottom
+    $t-sizes: 0, 10, 30, 40; 
+    @each $size in $t-sizes { .t-#{$size} { top: #{$size}px; } }
+
+    $b-sizes: 20, 90, 100; 
+    @each $size in $b-sizes { .b-#{$size} { bottom: #{$size}px; } }
+
+    $l-sizes: 0; 
+    @each $size in $l-sizes { .l-#{$size} { left: #{$size}px; } }
+
+    $r-sizes: 0, 10, 20; 
+    @each $size in $r-sizes { .r-#{$size} { right: #{$size}px; } }
+
+    // other
+    $border-radius-sizes: 20, 36; 
+    @each $size in $border-radius-sizes { .br-#{$size} { border-radius: #{$size}px; } }
+
+    $gap-sizes: 2, 5, 10, 20; 
+    @each $size in $gap-sizes { .gap-#{$size} { gap: #{$size}px; } }
+
+    $font-sizes: 12, 14, 24; 
+    @each $size in $font-sizes { .font-#{$size} { font-size: #{$size}px; } }
+
+    $font-weight: 400, 500; 
+    @each $size in $font-weight { .font-w-#{$size} { font-weight: #{$size}; } }
+
+    $opacity-value: 100; 
+    @each $size in $opacity-value { .opacity-#{$size} { opacity: #{$size * 0.01}; } }
+
+    $z-index: 10, 20, 30; 
+    @each $size in $z-index { .z-#{$size} { z-index: #{$size}; } }
+
+    $height-sizes: 4, 20, 24, 36, 54, 40, 60; 
+    @each $size in $height-sizes { .h-#{$size} { height: #{$size}px; } }
+
+    $width-sizes: 20, 24, 54, 36, 40, 60; 
+    @each $size in $width-sizes { .w-#{$size} { width: #{$size}px; } }
+
+    $backdrop-filter-blur: 7; 
+    @each $size in $backdrop-filter-blur { .blur-#{$size} { backdrop-filter: blur(#{$size}px); } }
+
+    // --- СЕКЦИЯ ЦВЕТОВ (Полностью независимые массивы) ---
+
+    // 1. Background
+    $bg-colors: 1, 2, 3;
+    $bg-opacities: 7, 10, 50, 70, 100;
+    @each $color in $bg-colors {
+        @each $opacity in $bg-opacities {
+            .bg-#{$color}-#{$opacity} { background: rgb(var(--bg-#{$color}) / #{$opacity * 1%}); }
+        }
+    }
+
+    // 2. Fill (SVG)
+    $fill-colors: 1;
+    $fill-opacities: 10;
+    @each $color in $fill-colors {
+        @each $opacity in $fill-opacities {
+            .fill-#{$color}-#{$opacity} { fill: rgb(var(--bg-#{$color}) / #{$opacity * 1%}); }
+        }
+    }
+
+    // 3. Text Color
+    $text-colors: 1, 2, 4;
+    $text-opacities: 10, 80;
+    @each $color in $text-colors {
+        @each $opacity in $text-opacities {
+            .color-#{$color}-#{$opacity} { color: rgb(var(--bg-#{$color}) / #{$opacity * 1%}); }
+        }
+    }
+
+    // 4. Border (All sides)
+    $border-colors: 1, 2;
+    $border-opacities: 10, 20;
+    @each $color in $border-colors {
+        @each $opacity in $border-opacities {
+            .border-1px-#{$color}-#{$opacity} { border: solid 1px rgb(var(--bg-#{$color}) / #{$opacity * 1%}); }
+        }
+    }
+
+    // 5. Border Bottom
+    $border-b-colors: 1;
+    $border-b-opacities: 10;
+    @each $color in $border-b-colors {
+        @each $opacity in $border-b-opacities {
+            .border-b-1px-#{$color}-#{$opacity} { border-bottom: solid 1px rgb(var(--bg-#{$color}) / #{$opacity * 1%}); }
+        }
+    }
+}

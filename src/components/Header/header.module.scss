@@ -1,0 +1,40 @@
+.header {
+    --header-h: 60px;
+    height: var(--header-h);
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(var(--header-h) + 50px);
+        margin-top: -40px;
+        z-index: -1;
+        pointer-events: none;
+        background: linear-gradient(
+            to bottom,
+            rgb(var(--bg-1) / 100%),
+            rgb(var(--bg-1) / 70%),
+            rgb(var(--bg-1) / 0%)
+        );
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(var(--header-h) + 50px);
+        margin-top: -40px;
+        z-index: -1;
+        pointer-events: none;
+        backdrop-filter: blur(3px);
+        mask: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 1) 0%,      // Полное размытие
+            rgba(0, 0, 0, 1) 80%,     // Размытие всё ещё активно
+            rgba(0, 0, 0, 0) 100%     // К низу — размытие исчезает
+        );
+    }
+}

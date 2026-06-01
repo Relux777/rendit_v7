@@ -1,0 +1,10 @@
+@layer reset {
+    *, ::before, ::after {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+    }
+    ul, menu, dialog { padding: 0; margin: 0; }
+    li { list-style-type: none; }
+    dialog { border: 0; background: none; max-width: initial; max-height: initial; }
+    h1, h2, h3, h4 { margin: 0; line-height: 1.2; }
+}

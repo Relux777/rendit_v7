@@ -1,0 +1,24 @@
+@layer animations {
+    .translate_0_5 { &:hover { transform: translate(0px, -5px); } }
+    .scale_0_1 { &:hover { transform: scale(1.01); } }
+    .active_scale_09 {&:active {transform: scale(0.9);}}
+    
+    .hover-rotate-15 {
+        transform-origin: 50% 0%;
+        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        &:hover {
+            transform: rotate(15deg);
+            transition-duration: 0.3s;
+            
+            &:active {
+                transform: rotate(-10deg);
+                transition-duration: 0.1s;
+            }
+        }
+    }
+
+    .translateY-50px {
+        transform: translateY(50px);
+        &.active { transform: translateY(0px); }
+    }
+}

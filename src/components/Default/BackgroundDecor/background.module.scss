@@ -1,0 +1,32 @@
+.background {
+    z-index: -1;
+    top: 0;
+        .canvas {
+            pointer-events: none;
+            inset: 0;
+            z-index: 1;
+        }
+        .left {
+            opacity: .8;
+            left: -30%;
+            bottom: -30%;
+        }
+        .right {
+            opacity: .5;
+            top: -60%;
+            right: -65%;
+            transform: rotate(12deg);
+        }
+        .left, .right {
+        // Запрещаем любое взаимодействие
+        pointer-events: none; 
+        user-select: none;
+        -webkit-user-drag: none; // Специально для Safari и Chrome
+        -webkit-touch-callout: none; // Отключает системное меню при долгом нажатии в iOS
+        }
+
+        .canvas {
+        // Если частицы тоже не должны перехватывать клики:
+        pointer-events: none;
+        }
+}

@@ -1,0 +1,36 @@
+@use "sass:math";
+
+@layer layout {
+    .container { position: relative; margin: 0 auto; padding-inline: 10px; z-index: 9; }
+    
+    .flex {
+        display: flex;
+        flex-wrap: wrap;
+        > [class^='f-w-'] { padding-inline: 10px; position: relative; }
+        &.align-center { align-items: center; }
+        &.align-flex-end { align-items: flex-end; }
+
+        &.content-flex-end { align-content: flex-end; }
+        &.content-space-around { align-content: space-around; }
+        &.content-center { align-content: center; }
+
+        &.justify-end { justify-content: flex-end; }
+        &.justify-between { justify-content: space-between; }
+        &.justify-evenly { justify-content: space-evenly; }
+        &.justify-center { justify-content: center; }
+
+        &.nowrap { flex-wrap: nowrap; }
+        &.column { flex-direction: column; }
+        &.row { flex-direction: row; }
+    }
+ 
+
+
+    .flex-1 { flex: 1; }
+    .block { display: block; }
+    .none { display: none; }
+
+    @for $i from 1 through 12 {
+        .f-w-#{$i} { width: math.percentage(math.div($i, 12)); }
+    }
+}
