@@ -122,7 +122,7 @@
     $border-radius-sizes: 20, 36; 
     @each $size in $border-radius-sizes { .br-#{$size} { border-radius: #{$size}px; } }
 
-    $gap-sizes: 2, 5, 10, 20; 
+    $gap-sizes: 2, 3, 5, 10, 20; 
     @each $size in $gap-sizes { .gap-#{$size} { gap: #{$size}px; } }
 
     $font-sizes: 12, 14, 24; 

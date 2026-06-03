@@ -2,7 +2,7 @@ import { Link, usePathname } from '@/i18n/navigation';
 
 import styles from './nav.module.scss'
 
-import SearchIcon from '@/assets/svg/search-alt.svg';
+import SearchIcon from '@/assets/svg/search.svg';
 import { useTranslations } from 'next-intl';
 
 export default function SearchNav() {
@@ -11,9 +11,9 @@ export default function SearchNav() {
     const t = useTranslations('SearchPage');
 
     return (
-        <ul className={`flex nowrap overflow-hidden br-36 shadow-1 blur-7 tr-5 p-events-all ${styles.nav} ${styles.search} ${isSearchPage ? styles.active : ''}`}>
+        <ul className={`flex nowrap overflow-hidden br-36 shadow-1 blur-7 p-events-all ${styles.nav} ${styles.search} ${isSearchPage ? styles.active : ''}`}>
             <li>
-                <Link className={`flex column align-center justify-center ${styles.link} ${isSearchPage ? styles.active_hide : ''}`} href="/search">
+                <Link className={`flex column align-center  justify-center active_scale_09 ${styles.link} ${isSearchPage ? styles.active_hide : ''}`} href="/search">
                     <SearchIcon width={24} height={24} />
                 </Link>
             </li>

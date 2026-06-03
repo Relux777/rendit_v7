@@ -9,10 +9,10 @@ import RightIcon from '@/assets/svg/caret-big-right.svg';
 
 export default function LentaNav() {
     const pathname = usePathname(); 
-    const isSearchPage = pathname === '/';
+    const isSearchPage = pathname.startsWith('/lenta');
 
     return (
-        <ul className={`flex nowrap justify-evenly overflow-hidden br-36 shadow-1 blur-7 tr-5 p-events-all ${styles.nav} ${styles.lenta} ${isSearchPage ? styles.active : ''}`}>
+        <ul className={`flex nowrap justify-evenly overflow-hidden br-36 shadow-1 blur-7 p-events-all ${styles.nav} ${styles.lenta} ${isSearchPage ? styles.active : ''}`}>
             <li>
                 <button className={`flex column align-center justify-center active_scale_09 ${styles.link}`}>
                     <LeftIcon width={24} height={24} />
