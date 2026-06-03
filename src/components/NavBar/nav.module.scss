@@ -17,6 +17,7 @@
         --item-width: 50px;
         --item-height: 50px;
     }
+
     @for $i from 1 through 4 {
         &:has(li:nth-child(#{$i}) a.active) .slider {
             transform: translateX(calc((#{$i} - 1) * var(--item-width)));
@@ -27,17 +28,16 @@
         inline-size: var(--item-width);
         block-size: var(--item-height);
         span {transition: max-height 0.4s ease, opacity 0.4s ease;max-height: 20px;opacity: 1;}
+
         &.active {
             opacity: 1;
             .nav_icon, span {fill: rgb(var(--bg-4));color: rgb(var(--bg-4) / 1);}
         }
-        
     }
-
 
     &.lenta {
         --count: 0;
-        &.active { --count: 3; margin-inline: 10px; }
+        &.active { --count: 3; margin-inline: 5px; }
     }
 
     &.menu, .slider {
@@ -51,11 +51,27 @@
             --item-height: 60px;
             .link span {max-height: 0;opacity: 0;}
             .slider { opacity: 0; }
+            @media (width < 400px) {
+            --item-width: 56px;
+            --item-height: 56px;
+        }
+            @media (width < 340px) {
+                --item-width: 50px;
+                --item-height: 50px;
+            }
         }
         
 
         @media (width < 400px) {
             .link span {display: none;}
+        }
+        @media (width < 400px) {
+            --item-width: 56px;
+            --item-height: 56px;
+        }
+        @media (width < 340px) {
+            --item-width: 50px;
+            --item-height: 50px;
         }
     }
 
