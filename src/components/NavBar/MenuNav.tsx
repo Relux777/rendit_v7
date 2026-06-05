@@ -69,7 +69,7 @@ export default function MenuNav() {
                 <Modal 
                         isOpen={isModalOpen}
                         onClose={() => setIsModalOpen(false)}
-                        className={`${ModalStyles.bottom} ${ModalStyles.w_440px}`}
+                        className={`${ModalStyles.bottom} ${ModalStyles.w_360px}`}
                     >
                         <MenuModal />
                     </Modal>

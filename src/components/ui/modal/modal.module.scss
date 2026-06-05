@@ -37,9 +37,15 @@
   }
 
   /* --- МОДИФИКАТОРЫ РАЗМЕРА --- */
+  &.w_360px {
+    .content {
+      width: 360px;
+      @media (width < 500px) { width: 100%; } /* ИСПРАВЛЕНО: не хватало px */
+    }
+  }
   &.w_440px {
     .content {
-      width: 460px;
+      width: 440px;
       @media (width < 500px) { width: 100%; } /* ИСПРАВЛЕНО: не хватало px */
     }
   }

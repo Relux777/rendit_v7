@@ -40,6 +40,12 @@
     .shadow-2 { box-shadow: inset 0 0 0 1px color-mix(in srgb,#fff calc(var(--glass-reflex-light)*10%),transparent),inset 2px 1px 0 -1px color-mix(in srgb,#fff calc(var(--glass-reflex-light)*90%),transparent),inset -1.5px -1px 0 -1px color-mix(in srgb,#fff calc(var(--glass-reflex-light)*80%),transparent),inset -2px -6px 1px -5px color-mix(in srgb,#fff calc(var(--glass-reflex-light)*60%),transparent),inset -1px 2px 3px -1px color-mix(in srgb,#000 calc(var(--glass-reflex-dark)*20%),transparent),inset 0 -4px 1px -2px color-mix(in srgb,#000 calc(var(--glass-reflex-dark)*10%),transparent),0 3px 6px 0 color-mix(in srgb,#000 calc(var(--glass-reflex-dark)*8%),transparent);}
     .shadow-3 { box-shadow: 0 -1px 0 0 var(--glass-shadow-3); }
     .shadow-4 { box-shadow: 0 40px 80px -20px var(--glass-shadow), 0 10px 30px -10px var(--glass-shadow), inset 0 2px 3px -1px var(--glass-highlight), inset 0 -2px 4px -1px var(--glass-caustic), inset 0 0 0 1px var(--glass-border);}
+    .shadow-5 { box-shadow: 0 0 15px #0000000f, 0 2px 30px #00000038, inset 0 0 1px #ffffff26; }
+
+
+    // SHADOWWSSSSS 5 VAR
+
+
 
     // Overflow & Other
     .overflow-auto { overflow: auto; max-height: 100vh; }
@@ -62,7 +68,7 @@
     .tr-bezier-5 { transition: transform .5s cubic-bezier(.68, -.55, .265, 1.55); }
 
     // padding
-    $pd-sizes: 3, 5, 7, 10, 15, 20,; 
+    $pd-sizes: 3, 5, 7, 10, 12, 15, 20,; 
     @each $size in $pd-sizes { .pd-#{$size} { padding: #{$size}px; } }
 
     $pb-sizes: 0, 90; 
@@ -87,7 +93,7 @@
     $md-sizes: 0; 
     @each $size in $md-sizes { .md-#{$size} { margin: #{$size}px; } }
 
-    $mb-sizes: 10, 20; 
+    $mb-sizes: 7, 10, 15, 20; 
     @each $size in $mb-sizes { .mb-#{$size} { margin-bottom: #{$size}px; } }
 
     $mt-sizes: 2, 20; 
@@ -119,10 +125,10 @@
     @each $size in $r-sizes { .r-#{$size} { right: #{$size}px; } }
 
     // other
-    $border-radius-sizes: 20, 36; 
+    $border-radius-sizes: 12, 20, 36; 
     @each $size in $border-radius-sizes { .br-#{$size} { border-radius: #{$size}px; } }
 
-    $gap-sizes: 2, 3, 5, 10, 20; 
+    $gap-sizes: 2, 3, 5, 7, 10, 20; 
     @each $size in $gap-sizes { .gap-#{$size} { gap: #{$size}px; } }
 
     $font-sizes: 12, 14, 24; 
@@ -150,10 +156,18 @@
 
     // 1. Background
     $bg-colors: 1, 2, 3;
-    $bg-opacities: 7, 10, 50, 70, 100;
+    $bg-opacities: 3, 7, 10, 50, 70, 100;
     @each $color in $bg-colors {
         @each $opacity in $bg-opacities {
             .bg-#{$color}-#{$opacity} { background: rgb(var(--bg-#{$color}) / #{$opacity * 1%}); }
+        }
+    }
+
+    $bg-colors: 1, 2;
+    $bg-opacities: 5;
+    @each $color in $bg-colors {
+        @each $opacity in $bg-opacities {
+            .h-bg-#{$color}-#{$opacity} { &:hover { background: rgb(var(--bg-#{$color}) / #{$opacity * 1%}); } }
         }
     }
 
