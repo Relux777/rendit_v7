@@ -1,89 +1,102 @@
-
 .nav {
   --item-width: 60px;
   --item-height: 60px;
   --count: 1;
 
-    inline-size: calc(var(--item-width) * var(--count));
-    block-size: var(--item-height);
-    will-change: inline-size;
-    transition: inline-size 0.5s ease;
+  inline-size: calc(var(--item-width) * var(--count));
+  block-size: var(--item-height);
+  will-change: inline-size;
+  transition: inline-size 0.4s ease;
 
-    @media (width < 400px) {
-        --item-width: 56px;
-        --item-height: 56px;
+  @media (width < 390px) {
+    --item-width: 56px;
+    --item-height: 56px;
+  }
+  @media (width < 340px) {
+    --item-width: 50px;
+    --item-height: 50px;
+  }
+
+  @for $i from 1 through 4 {
+    &:has(li:nth-child(#{$i}) a.active) .slider {
+      transform: translateX(calc((#{$i} - 1) * var(--item-width)));
+    }
+  }
+
+  .link, .slider {
+    inline-size: var(--item-width);
+    block-size: var(--item-height);
+    
+    span {
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      max-height: 20px;
+      opacity: 1;
+    }
+
+    &.active {
+      opacity: 1;
+      .nav_icon, span {
+        fill: rgb(var(--bg-4));
+        color: rgb(var(--bg-4));
+      }
+    }
+  }
+
+  &.lenta {
+    --count: 0;
+    &.active { 
+      --count: 3; 
+      margin-inline: 5px; 
+    }
+  }
+
+  &.menu, .slider {
+    --count: 4;
+    --item-width: 70px;
+    --item-height: 66px;
+
+    @media (width < 390px) {
+      --item-width: 56px;
+      --item-height: 56px;
+      .link span { display: none; }
     }
     @media (width < 340px) {
+      --item-width: 50px;
+      --item-height: 50px;
+    }
+
+    &.active {
+      --count: 1;
+      --item-width: 60px;
+      --item-height: 60px;
+
+      .link span { 
+        max-height: 0; 
+        opacity: 0; 
+      }
+      .slider { 
+        opacity: 0; 
+      }
+
+      @media (width < 400px) {
+        --item-width: 56px;
+        --item-height: 56px;
+      }
+      @media (width < 340px) {
         --item-width: 50px;
         --item-height: 50px;
+      }
     }
+  }
 
-    @for $i from 1 through 4 {
-        &:has(li:nth-child(#{$i}) a.active) .slider {
-            transform: translateX(calc((#{$i} - 1) * var(--item-width)));
-        }
-    }
-
-    .link, .slider  {
-        inline-size: var(--item-width);
-        block-size: var(--item-height);
-        span {transition: max-height 0.4s ease, opacity 0.4s ease;max-height: 20px;opacity: 1;}
-
-        &.active {
-            opacity: 1;
-            .nav_icon, span {fill: rgb(var(--bg-4));color: rgb(var(--bg-4) / 1);}
-        }
-    }
-
-    &.lenta {
-        --count: 0;
-        &.active { --count: 3; margin-inline: 5px; }
-    }
-
-    &.menu, .slider {
-        --count: 4;
-        --item-width: 70px;
-        --item-height: 66px;
-
-        &.active {
-            --count: 1;
-            --item-width: 60px;
-            --item-height: 60px;
-            .link span {max-height: 0;opacity: 0;}
-            .slider { opacity: 0; }
-            @media (width < 400px) {
-            --item-width: 56px;
-            --item-height: 56px;
-        }
-            @media (width < 340px) {
-                --item-width: 50px;
-                --item-height: 50px;
-            }
-        }
-        
-
-        @media (width < 400px) {
-            .link span {display: none;}
-        }
-        @media (width < 400px) {
-            --item-width: 56px;
-            --item-height: 56px;
-        }
-        @media (width < 340px) {
-            --item-width: 50px;
-            --item-height: 50px;
-        }
-    }
-
-    &.search {
-        --count: 1;
-        &.active { --count: 4; }
-        .active_hide { width: 0; }
-    }
+  &.search {
+    --count: 1;
+    &.active { --count: 4; }
+    .active_hide { width: 0; }
+  }
 }
 
-
-.animation_nav {
+.animation_footer {
   inset-block-end: 20px; 
   will-change: transform;
   animation: menuSlideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -94,10 +107,6 @@
 }
 
 @keyframes menuSlideUp {
-  0% {
-    transform: translate3d(0, 70px, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
+  0% { transform: translate3d(0, 70px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }

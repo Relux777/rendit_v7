@@ -1,4 +1,4 @@
-export default function SearchPage() {
+export default function MessagesPage() {
     return (
         <div>1</div>
     )

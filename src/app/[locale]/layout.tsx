@@ -65,6 +65,7 @@ export default async function RootLayout({
               {children}
               <NavBar />
               <BackgroundDecor />
+              <div id="modal-root"></div>
             </div>
           </ThemeProvider>
         </NextIntlClientProvider>

@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import CloseIcon from '@/assets/svg/x.svg';
 import styles from './modal.module.scss';
 
@@ -15,18 +16,23 @@ export default function Modal({
   isOpen: boolean;
   onClose: () => void;
 }) {
+  const [mounted, setMounted] = useState(false);
+
   const modalRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   
   const startY = useRef<number | null>(null);
   const currentY = useRef<number>(0);
   
-  // Рефы для оптимизации вычислений
   const contentHeight = useRef<number>(0);
   const rafRef = useRef<number | null>(null);
 
-  const SWIPE_THRESHOLD = 120; // Порог для ЗАКРЫТИЯ оставляем удобным (150px)
+  const SWIPE_THRESHOLD = 120;
   const MAX_BLUR = 7;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -53,14 +59,12 @@ export default function Modal({
     return () => {
       document.documentElement.style.overflow = '';
       document.documentElement.style.scrollbarGutter = '';
-      if (rafRef.current) cancelAnimationFrame(rafRef.current); // Очищаем кадры при демонтировании
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [isOpen]);
 
   const handleDragStart = (clientY: number) => {
     startY.current = clientY;
-    
-    // 1. Запоминаем реальную высоту окна один раз при старте свайпа
     contentHeight.current = contentRef.current?.offsetHeight || window.innerHeight;
 
     if (contentRef.current) contentRef.current.style.transition = 'none';
@@ -74,16 +78,13 @@ export default function Modal({
     if (deltaY > 0) {
       currentY.current = deltaY;
       
-      // 2. Оптимизация: requestAnimationFrame спасает от перегрузки на слабых телефонах
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       
       rafRef.current = requestAnimationFrame(() => {
         if (contentRef.current) {
-          // Использование translate3d форсирует аппаратное ускорение (GPU)
           contentRef.current.style.transform = `translate3d(0, ${deltaY}px, 0)`;
         }
 
-        // Прогресс блюра теперь зависит от ВЫСОТЫ контента, а не от 150px
         const progress = Math.min(deltaY / contentHeight.current, 1);
         const currentBlur = MAX_BLUR * (1 - progress);
 
@@ -98,7 +99,6 @@ export default function Modal({
   const handleDragEnd = () => {
     if (startY.current === null) return;
     
-    // Очищаем ожидающий кадр анимации
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
 
     if (currentY.current > SWIPE_THRESHOLD) {
@@ -106,7 +106,7 @@ export default function Modal({
     } else {
       if (contentRef.current) {
         contentRef.current.style.transition = 'transform 0.3s ease-out';
-        contentRef.current.style.transform = 'translate3d(0, 0, 0)'; // Возвращаем тоже через 3d
+        contentRef.current.style.transform = 'translate3d(0, 0, 0)';
       }
       if (modalRef.current) {
         modalRef.current.style.transition = 'backdrop-filter 0.3s ease-out, -webkit-backdrop-filter 0.3s ease-out';
@@ -119,9 +119,14 @@ export default function Modal({
     currentY.current = 0;
   };
 
+  if (!mounted) return null;
+
+  const portalRoot = document.getElementById('modal-root');
+  if (!portalRoot) return null;
+
   const modalVisibilityClass = isOpen ? styles.active : '';
 
-  return (
+  return createPortal(
     <div
       ref={modalRef}
       className={`${styles.modal} p-fixed flex justify-center z-20 cursor-pointer w-full visibility-hidden blur-7 inset-0 ${className} ${modalVisibilityClass}`}
@@ -158,6 +163,7 @@ export default function Modal({
 
         {children}
       </div>
-    </div>
+    </div>,
+    portalRoot
   );
 }

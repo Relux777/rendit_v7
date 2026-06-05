@@ -10,10 +10,12 @@ const SearchNav = dynamic(() => import('./SearchNav'));
 export default function Navbar() {
 
   return (
-    <nav className={`p-fixed flex justify-center align-center w-full gap-5 z-10 p-events-none ${styles.animation_nav}`}>
-      <MenuNav />
-      <LentaNav />
-      <SearchNav />
-    </nav>
+    <footer className={`p-fixed w-full z-10 ${styles.animation_footer}`}>
+      <nav className={`flex justify-center align-center gap-5 p-events-none`}>
+        <MenuNav />
+        <LentaNav />
+        <SearchNav />
+      </nav>
+    </footer>
   );
 }
