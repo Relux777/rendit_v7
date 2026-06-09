@@ -7,7 +7,7 @@ export default function MenuModal() {
     return (
         <main className="p-relative overflow-auto scrollbar-none pd-20">
             <header>
-                <h2 className="text_center mb-15">Меню</h2>
+                <h2 className="text_center mb-15">Меню 2</h2>
             </header>
             <div className="flex align-center gap-10 mb-20 bg-2-3 br-12 pd-10 shadow-5">
                 <button className='flex align-center hover-80 pd-3 blur-7 shadow-1 br-36 active_scale_09'>
