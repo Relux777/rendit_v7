@@ -5,7 +5,7 @@ import UserIcon from '@/assets/svg/user.svg';
 
 export default function MenuModal() {
     return (
-        <main className=" pd-20">
+        <main className="p-relative overflow-auto scrollbar-none pd-20">
             <header>
                 <h2 className="text_center mb-15">Меню</h2>
             </header>
