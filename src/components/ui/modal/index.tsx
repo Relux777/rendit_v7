@@ -25,7 +25,8 @@ export default function Modal({
   const rafRef = useRef<number | null>(null);
   const mouseCleanupRef = useRef<(() => void) | null>(null);
 
-  const SWIPE_THRESHOLD = 120;
+  const SWIPE_THRESHOLD = 120; // полный сброс
+  const DRAG_START_THRESHOLD = 5; // минимальное движение для начала захвата (в px)
   const MAX_BLUR = 7;
 
   useEffect(() => {
@@ -51,14 +52,23 @@ export default function Modal({
     }
   }, []);
 
+  // Центральный обработчик перемещения
   const handleDragMove = useCallback(
     (clientY: number, e?: Event) => {
-      if (e && e.cancelable) {
-        e.preventDefault(); // Разрешено, т.к. слушатели навешены как не-пассивные
-      }
       if (startY.current === null) return;
       const deltaY = clientY - startY.current;
 
+      if (deltaY > DRAG_START_THRESHOLD) {
+        // Захватываем управление только когда смещение превысило порог
+        if (e && e.cancelable) {
+          e.preventDefault();
+        }
+      } else {
+        // Не мешаем стандартному поведению (скролл, клик)
+        return;
+      }
+
+      // Двигаем только вниз
       if (deltaY > 0) {
         currentY.current = deltaY;
 
@@ -82,14 +92,13 @@ export default function Modal({
         });
       }
     },
-    []
+    [DRAG_START_THRESHOLD]
   );
 
   const handleDragEnd = useCallback(() => {
     if (startY.current === null) return;
 
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
-
     mouseCleanupRef.current?.();
     mouseCleanupRef.current = null;
 
@@ -97,6 +106,7 @@ export default function Modal({
       resetStyles();
       onClose();
     } else {
+      // Возвращаем на место
       if (contentRef.current) {
         contentRef.current.style.transition = 'transform 0.3s ease-out';
         contentRef.current.style.transform = 'translate3d(0, 0, 0)';
@@ -113,11 +123,10 @@ export default function Modal({
     currentY.current = 0;
   }, [onClose, resetStyles]);
 
+  // Запуск драга – больше НЕ вызывает preventDefault здесь
   const handleDragStart = useCallback(
     (clientY: number, e: TouchEvent | React.MouseEvent) => {
-      if (e.cancelable) {
-        e.preventDefault();
-      }
+      // Для touchstart не блокируем стандартное поведение, иначе сломается тап
       startY.current = clientY;
       contentHeight.current =
         contentRef.current?.offsetHeight || window.innerHeight;
@@ -139,7 +148,7 @@ export default function Modal({
     [handleDragMove, handleDragEnd]
   );
 
-  // Навешиваем нативные не-пассивные обработчики на контент модалки
+  // Навешиваем нативные не-пассивные обработчики
   useEffect(() => {
     if (!isOpen || !contentRef.current) return;
 
@@ -194,12 +203,11 @@ export default function Modal({
         onClick={(e) => e.stopPropagation()}
         onMouseDown={(e) => handleDragStart(e.clientY, e)}
       >
-        {/* Драг-ручка: используется только для мыши; touch обрабатывается на content */}
+        {/* Драг-ручка только для мыши, touch обрабатывается на content */}
         <button
           className={`${styles.drag} flex justify-center w-full pd-20 active_scale_09 cursor-grab active:cursor-grabbing`}
           style={{ touchAction: 'none' }}
           onMouseDown={(e) => handleDragStart(e.clientY, e)}
-          // УДАЛЁН проблемный onTouchStart — его роль выполняет нативный не-пассивный обработчик на content
         >
           <span className="h-4 w-40 bg-2-50 br-36 mg-auto pointer-events-none"></span>
         </button>
@@ -207,7 +215,7 @@ export default function Modal({
         <button
           onClick={onClose}
           onMouseDown={(e) => e.stopPropagation()}
-          onTouchStart={(e) => e.stopPropagation()} // Этот обработчик не вызывает preventDefault, ошибки не будет
+          onTouchStart={(e) => e.stopPropagation()}
           className={`${styles.close} p-absolute justify-center flex align-center w-36 h-36 t-10 r-10 br-36 active_scale_09`}
           aria-label="Закрыть"
         >
