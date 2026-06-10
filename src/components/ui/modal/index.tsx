@@ -1,3 +1,4 @@
+//components/ui/modal/index
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
@@ -59,12 +60,14 @@ export default function Modal({
       const deltaY = clientY - startY.current;
 
       if (deltaY > DRAG_START_THRESHOLD) {
-        // Захватываем управление только когда смещение превысило порог
         if (e && e.cancelable) {
           e.preventDefault();
         }
+        // ДОБАВЛЯЕМ: как только начался именно drag, вешаем класс
+        if (contentRef.current) {
+          contentRef.current.classList.add(styles.isDragging);
+        }
       } else {
-        // Не мешаем стандартному поведению (скролл, клик)
         return;
       }
 
@@ -96,6 +99,11 @@ export default function Modal({
   );
 
   const handleDragEnd = useCallback(() => {
+    // ДОБАВЛЯЕМ: убираем класс при отпускании пальца
+    if (contentRef.current) {
+      contentRef.current.classList.remove(styles.isDragging);
+    }
+    
     if (startY.current === null) return;
 
     if (rafRef.current) cancelAnimationFrame(rafRef.current);

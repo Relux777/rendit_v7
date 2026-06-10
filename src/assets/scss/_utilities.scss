@@ -163,13 +163,11 @@
         }
     }
 
-    $bg-colors: 1, 2;
-    $bg-opacities: 5;
-    @each $color in $bg-colors {
-        @each $opacity in $bg-opacities {
-            .h-bg-#{$color}-#{$opacity} { &:hover { background: rgb(var(--bg-#{$color}) / #{$opacity * 1%}); } }
+    @media (hover: hover) and (pointer: fine) {
+        .h-bg-2-5:hover {
+            background-color: rgb(var(--bg-2)/5%);
         }
-    }
+        }
 
     // 2. Fill (SVG)
     $fill-colors: 1;
