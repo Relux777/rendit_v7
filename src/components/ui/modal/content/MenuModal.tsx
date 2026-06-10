@@ -31,7 +31,7 @@ export default function MenuModal() {
                     <li>
                         <Link className="pd-12 br-12 flex mb-7 gap-7 h-bg-2-5" href="/beta">
                             <UserIcon width={22} height={22} fill="#679efe" viewBox="0 0 24 24" />
-                            <span>Мой профиль 2</span>
+                            <span>Мой профиль 3</span>
                         </Link>
                             <Link className="pd-12 br-12 flex mb-7 gap-7 h-bg-2-5" href="/beta">
                             <UserIcon width={22} height={22} fill="#ff74d9" viewBox="0 0 24 24" />
