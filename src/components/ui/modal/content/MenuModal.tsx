@@ -29,31 +29,31 @@ export default function MenuModal() {
             <nav>
                 <ul className='bg-2-3 br-12 pd-10 shadow-5'>
                     <li>
-                        <Link className="pd-12 br-12 flex mb-7 gap-7 h-bg-2-5" href="/beta">
+                        <Link className="pd-12 br-12 flex mb-7 gap-7 bg-2-3" href="/">
                             <UserIcon width={22} height={22} fill="#679efe" viewBox="0 0 24 24" />
                             <span>Мой профиль 3</span>
                         </Link>
-                            <Link className="pd-12 br-12 flex mb-7 gap-7 h-bg-2-5" href="/beta">
+                            <Link className="pd-12 br-12 flex mb-7 gap-7 bg-2-3" href="/">
                             <UserIcon width={22} height={22} fill="#ff74d9" viewBox="0 0 24 24" />
                             <span>Внешний вид</span>
                         </Link>
-                        <Link className="pd-12 br-12 flex mb-7 gap-7 h-bg-2-5" href="/beta">
+                        <Link className="pd-12 br-12 flex mb-7 gap-7 bg-2-3" href="/">
                             <UserIcon width={22} height={22} fill="#cf6679" viewBox="0 0 24 24" />
                             <span>Избранное</span>
                         </Link>
-                        <Link className="pd-12 br-12 flex mb-7 gap-7 h-bg-2-5" href="/beta">
+                        <Link className="pd-12 br-12 flex mb-7 gap-7 bg-2-3" href="/">
                             <UserIcon width={22} height={22} fill="#34495e" viewBox="0 0 24 24" />
                             <span>Конфиденциальность</span>
                         </Link>
-                        <Link className="pd-12 br-12 flex mb-7 gap-7 h-bg-2-5" href="/beta">
+                        <Link className="pd-12 br-12 flex mb-7 gap-7 bg-2-3" href="/">
                             <UserIcon width={22} height={22} fill="#309054" viewBox="0 0 24 24" />
                             <span>Пользовательское соглашение</span>
                         </Link>
-                        <Link className="pd-12 br-12 flex mb-7 gap-7 h-bg-2-5" href="/beta">
+                        <Link className="pd-12 br-12 flex mb-7 gap-7 bg-2-3" href="/">
                             <UserIcon width={22} height={22} fill="#0060d1" viewBox="0 0 24 24" />
                             <span>О сервисе</span>
                         </Link>
-                        <Link className="pd-12 br-12 flex gap-7 h-bg-2-5" href="/beta">
+                        <Link className="pd-12 br-12 flex gap-7 bg-2-3" href="/">
                             <UserIcon width={22} height={22} fill="#8f8f8f" viewBox="0 0 24 24" />
                             <span>Выйти</span>
                         </Link>

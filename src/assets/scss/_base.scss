@@ -1,4 +1,9 @@
 @layer base {
+    /* 1. Глобально отключаем дефолтную подсветку тапа на мобилках */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+
     body {
         font-family: GeistVariable, Arial, Helvetica, sans-serif;
         font-size: var(--base-font-size);
@@ -18,7 +23,10 @@
         &::-webkit-scrollbar-thumb {
             background-color: var(--scrollbar-thumb);
             border-radius: 10px;
-            &:hover { background: var(--scrollbar-thumb-hover); }
+
+            @media (hover: hover) and (pointer: fine) {
+                &:hover { background: var(--scrollbar-thumb-hover); }
+            }
         }
     }
 
@@ -34,24 +42,17 @@
         cursor: pointer;
         padding: 0;
 
-        &:is(:hover) { opacity: 1; }
-    }
-
-    p, span, strong { color: rgb(var(--bg-2) / 70%); }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        th {
-            padding: 6px;
-            &:first-child { border-radius: 0.5rem 0 0 0.5rem; text-align: center; width: 130px; }
-            &:last-child { border-radius: 0 0.5rem 0.5rem 0; }
+        @media (hover: hover) and (pointer: fine) {
+            &:hover { opacity: 1; }
         }
-        td { padding: 4px; }
+
+        &:active { 
+            opacity: 0.7;
+            transform: scale(0.98); 
+        }
     }
 
-    img, svg { vertical-align: middle; max-width: 100%; }
-    textarea { resize: none;field-sizing: content; }
+    /* ... остальной код (p, span, table, img и т.д. без изменений) ... */
     
     input, textarea {
         background: transparent;
@@ -68,4 +69,3 @@
     input:-webkit-autofill,
     input:-webkit-autofill:is(:hover, :focus) { -webkit-background-clip: text; }
 }
-

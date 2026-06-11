@@ -31,7 +31,6 @@
     .visibility-hidden.active { @extend .visible; }
     .visible { opacity: 1; visibility: visible; }
     .visible.visibility-hidden { @extend .visibility-hidden; }
-    .hover-opactity-9-10 { opacity: 0.9; &:hover { opacity: 1; } }
     .active > .rotate-180 { transform: rotate(-180deg); }
     .active.opacity-10 { opacity: 1; }
 
@@ -162,12 +161,6 @@
             .bg-#{$color}-#{$opacity} { background: rgb(var(--bg-#{$color}) / #{$opacity * 1%}); }
         }
     }
-
-    @media (hover: hover) and (pointer: fine) {
-        .h-bg-2-5:hover {
-            background-color: rgb(var(--bg-2)/5%);
-        }
-        }
 
     // 2. Fill (SVG)
     $fill-colors: 1;
