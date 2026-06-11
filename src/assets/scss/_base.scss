@@ -51,8 +51,9 @@
             transform: scale(0.98); 
         }
     }
-
-    /* ... остальной код (p, span, table, img и т.д. без изменений) ... */
+    
+    img, svg { vertical-align: middle; max-width: 100%; }
+    textarea { resize: none;field-sizing: content; }
     
     input, textarea {
         background: transparent;
