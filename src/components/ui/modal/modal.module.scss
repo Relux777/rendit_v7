@@ -14,9 +14,12 @@
     }
     
     .close {
-      &:hover {
-        background: rgb(var(--bg-2) / 7%);
-      }
+       @media (hover: hover) and (pointer: fine) {
+            &:hover { background: rgb(var(--bg-2) / 7%); }
+        }
+        &:active { 
+            background: rgb(var(--bg-2) / 7%);
+        }
     }
   }
 
